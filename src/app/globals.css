@@ -136,6 +136,7 @@
 html,
 body {
   scrollbar-width: none;
+  user-select: none;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

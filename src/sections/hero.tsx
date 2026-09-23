@@ -18,15 +18,17 @@ export default function Hero() {
     stiffness: 120,
     damping: 20,
   });
+
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);
   };
+
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="h-screen snap-start flex items-center justify-center relative min-h-screen flex items-center overflow-hidden bg-[#09090B]"
+      className="h-screen min-h-screen snap-start flex items-center justify-center relative overflow-hidden bg-[#09090B]"
     >
       {/* Background Base */}
       <div className="absolute inset-0 bg-[#09090B]" />
@@ -75,8 +77,6 @@ export default function Hero() {
         className="absolute top-0 left-0 h-full w-[250px] bg-gradient-to-r from-transparent via-blue-500/5 to-transparent blur-xl pointer-events-none"
       />
 
-      {/* Grid Overlay */}
-      {/* <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:60px_60px]" /> */}
       <motion.div
         style={{
           background: `radial-gradient(300px circle at ${mouseX.get()}px ${mouseY.get()}px, rgba(255,255,255,0.12), transparent 70%)`,
@@ -117,25 +117,10 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className=" mt-8 max-w-2xl text-zinc-400 text-lg md:text-xl leading-relaxed"
+          className="mt-8 max-w-2xl text-zinc-400 text-lg md:text-xl leading-relaxed"
         >
           Addicted to Actioning Ideas
         </motion.p>
-
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-10 flex flex-wrap gap-4"
-        >
-          <button className="px-8 py-4 bg-white text-black rounded-xl font-semibold hover:bg-zinc-200 transition-all">
-            Projects
-          </button>
-
-          <button className="px-8 py-4 border border-white/20 text-white rounded-xl backdrop-blur-md hover:bg-white/10 transition-all">
-            Contact
-          </button>
-        </motion.div> */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -145,7 +130,7 @@ export default function Hero() {
         >
           <a
             href="mailto:pankajbadhann@gmail.com"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 transition-all duration-300 text-zinc-300 hover:text-white hover:border-blue-500/40 hover:bg-white/10 transition-all duration-300"
+            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 text-zinc-300 hover:text-white hover:border-blue-500/40 hover:bg-white/10 transition-all duration-300"
           >
             <FiMail size={24} />
           </a>
@@ -154,7 +139,7 @@ export default function Hero() {
             href="https://github.com/pankajbadhann"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 transition-all duration-300 text-zinc-300 hover:text-white hover:border-blue-500/40 hover:bg-white/10 transition-all duration-300"
+            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 text-zinc-300 hover:text-white hover:border-blue-500/40 hover:bg-white/10 transition-all duration-300"
           >
             <FaGithub size={24} />
           </a>
@@ -163,7 +148,7 @@ export default function Hero() {
             href="https://wa.me/917837618700"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 transition-all duration-300 text-zinc-300 hover:text-white hover:border-green-500/40 hover:bg-white/10 transition-all duration-300"
+            className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:scale-110 hover:-translate-y-1 text-zinc-300 hover:text-white hover:border-green-500/40 hover:bg-white/10 transition-all duration-300"
           >
             <FaWhatsapp size={24} />
           </a>
