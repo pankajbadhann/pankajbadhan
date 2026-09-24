@@ -66,7 +66,6 @@ function Field({
   );
 }
 
-
 function Kpi({
   label,
   value,
@@ -452,16 +451,19 @@ export default function DevProPage() {
             INPUT | CHART | TABLE
         ================================= */}
 
-        <section className="flex min-h-0 flex-1 overflow-hidden">
+        <section className="flex min-h-0 flex-1 flex-col lg:flex-row overflow-hidden overflow-y-auto lg:overflow-y-hidden">
           {/* ================================
               INPUT / ASIDE
           ================================= */}
 
           <aside
             style={{
-              width: `${inputWidth}%`,
+              width:
+                typeof window !== "undefined" && window.innerWidth >= 1024
+                  ? `${inputWidth}%`
+                  : "100%",
             }}
-            className={`${card} min-h-0 shrink-0 overflow-y-auto p-4 sm:p-5`}
+            className={`${card} min-h-0 w-full lg:w-auto shrink-0 overflow-y-auto p-4 sm:p-5`}
           >
             {/* Balance summary moved into sidebar */}
 
@@ -614,9 +616,12 @@ export default function DevProPage() {
 
           <section
             style={{
-              width: `${chartWidth}%`,
+              width:
+                typeof window !== "undefined" && window.innerWidth >= 1024
+                  ? `${chartWidth}%`
+                  : "100%",
             }}
-            className="flex min-h-0 min-w-0 shrink-0 flex-col overflow-hidden"
+            className="flex min-h-0 min-w-0 w-full lg:w-auto shrink-0 flex-col overflow-hidden"
           >
             <div className="flex min-h-0 flex-1 flex-col gap-3">
               {!data.valid ? (
@@ -717,109 +722,106 @@ export default function DevProPage() {
               TABLE
           ================================= */}
 
-          <section className="min-h-0 min-w-0 flex-1 overflow-hidden">
-  {data.valid ? (
-    <div
-      className={`${card} flex h-full min-h-0 min-w-0 flex-col overflow-hidden`}
-    >
-      {/* TABLE — vertically scrollable, no horizontal overflow */}
-      <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
-        <table className="w-full min-w-0 table-fixed border-collapse">
-          <thead className="sticky top-0 z-10 bg-[#101720] text-[7px] uppercase tracking-[.55px] text-[#778396]">
-            <tr>
-              <th className="w-[14%] border-b border-white/[.04] px-2 py-2 text-left">
-                Period
-              </th>
-
-              <th className="w-[10%] border-b border-white/[.04] px-2 py-2 text-right">
-                Trade
-              </th>
-
-              <th className="w-[13%] border-b border-white/[.04] px-2 py-2 text-right">
-                Result
-              </th>
-
-              <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
-                Before
-              </th>
-
-              <th className="w-[15%] border-b border-white/[.04] px-2 py-2 text-right">
-                Risk
-              </th>
-
-              <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
-                P/L
-              </th>
-
-              <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
-                After
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {data.rows.map((row) => (
-              <tr
-                key={row.trade}
-                className="text-[9px] text-[#aeb8c8] hover:bg-white/[.025]"
+          <section className="min-h-0 min-w-0 w-full lg:flex-1 shrink-0 overflow-hidden">
+            {data.valid ? (
+              <div
+                className={`${card} flex h-full min-h-0 min-w-0 flex-col overflow-hidden`}
               >
-                <td className="truncate border-b border-white/[.04] px-2 py-2 text-left">
-                  W{row.week} · D{row.day}
-                </td>
+                {/* TABLE — vertically scrollable, no horizontal overflow */}
+                <div className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden">
+                  <table className="w-full min-w-0 table-fixed border-collapse">
+                    <thead className="sticky top-0 z-10 bg-[#101720] text-[7px] uppercase tracking-[.55px] text-[#778396]">
+                      <tr>
+                        <th className="w-[14%] border-b border-white/[.04] px-2 py-2 text-left">
+                          Period
+                        </th>
 
-                <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
-                  #{row.trade}
-                </td>
+                        <th className="w-[10%] border-b border-white/[.04] px-2 py-2 text-right">
+                          Trade
+                        </th>
 
-                <td
-                  className={`truncate border-b border-white/[.04] px-2 py-2 text-right font-extrabold ${
-                    row.result === "WIN"
-                      ? "text-[#35d89a]"
-                      : "text-[#ff6678]"
-                  }`}
-                >
-                  {row.result}
-                </td>
+                        <th className="w-[13%] border-b border-white/[.04] px-2 py-2 text-right">
+                          Result
+                        </th>
 
-                <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
-                  {money(row.before)}
-                </td>
+                        <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
+                          Before
+                        </th>
 
-                <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
-                  {money(row.risk)}
-                </td>
+                        <th className="w-[15%] border-b border-white/[.04] px-2 py-2 text-right">
+                          Risk
+                        </th>
 
-                <td
-                  className={`truncate border-b border-white/[.04] px-2 py-2 text-right ${
-                    row.pnl >= 0
-                      ? "text-[#35d89a]"
-                      : "text-[#ff6678]"
-                  }`}
-                >
-                  {row.pnl >= 0 ? "+" : ""}
-                  {money(row.pnl)}
-                </td>
+                        <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
+                          P/L
+                        </th>
 
-                <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
-                  {money(row.after)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  ) : (
-    <div
-      className={`${card} grid h-full min-w-0 place-items-center overflow-hidden text-center`}
-    >
-      <span className="text-[10px] font-bold text-[#657185]">
-        Table will appear here
-      </span>
-    </div>
-  )}
-</section>
+                        <th className="w-[16%] border-b border-white/[.04] px-2 py-2 text-right">
+                          After
+                        </th>
+                      </tr>
+                    </thead>
 
+                    <tbody>
+                      {data.rows.map((row) => (
+                        <tr
+                          key={row.trade}
+                          className="text-[9px] text-[#aeb8c8] hover:bg-white/[.025]"
+                        >
+                          <td className="truncate border-b border-white/[.04] px-2 py-2 text-left">
+                            W{row.week} · D{row.day}
+                          </td>
+
+                          <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
+                            #{row.trade}
+                          </td>
+
+                          <td
+                            className={`truncate border-b border-white/[.04] px-2 py-2 text-right font-extrabold ${
+                              row.result === "WIN"
+                                ? "text-[#35d89a]"
+                                : "text-[#ff6678]"
+                            }`}
+                          >
+                            {row.result}
+                          </td>
+
+                          <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
+                            {money(row.before)}
+                          </td>
+
+                          <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
+                            {money(row.risk)}
+                          </td>
+
+                          <td
+                            className={`truncate border-b border-white/[.04] px-2 py-2 text-right ${
+                              row.pnl >= 0 ? "text-[#35d89a]" : "text-[#ff6678]"
+                            }`}
+                          >
+                            {row.pnl >= 0 ? "+" : ""}
+                            {money(row.pnl)}
+                          </td>
+
+                          <td className="truncate border-b border-white/[.04] px-2 py-2 text-right">
+                            {money(row.after)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div
+                className={`${card} grid h-full min-w-0 place-items-center overflow-hidden text-center`}
+              >
+                <span className="text-[10px] font-bold text-[#657185]">
+                  Table will appear here
+                </span>
+              </div>
+            )}
+          </section>
         </section>
       </div>
     </main>

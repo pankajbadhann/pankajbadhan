@@ -138,7 +138,7 @@ export default function PairsDashboard() {
       const updated = prev.map((p) =>
         p.name === selectedPair.name && p.category === selectedPair.category
           ? { ...p, setTimestamp: targetTimestamp, targetTimeStr: readableStr }
-          : p,
+          : p
       );
       if (typeof window !== "undefined") {
         localStorage.setItem("quotex_pairs_data_v4", JSON.stringify(updated));
@@ -155,7 +155,7 @@ export default function PairsDashboard() {
       const updated = prev.map((p) =>
         p.name === pair.name && p.category === pair.category
           ? { ...p, setTimestamp: null, targetTimeStr: "" }
-          : p,
+          : p
       );
       if (typeof window !== "undefined") {
         localStorage.setItem("quotex_pairs_data_v4", JSON.stringify(updated));
@@ -188,7 +188,7 @@ export default function PairsDashboard() {
     } else {
       const remHours = Math.floor(remainingMs / (1000 * 60 * 60));
       const remMins = Math.floor(
-        (remainingMs % (1000 * 60 * 60)) / (1000 * 60),
+        (remainingMs % (1000 * 60 * 60)) / (1000 * 60)
       );
       const remSecs = Math.floor((remainingMs % (1000 * 60)) / 1000);
       remainingStr = `${remHours}h ${remMins}m ${remSecs}s`;
@@ -226,13 +226,11 @@ export default function PairsDashboard() {
     return getPairStatus(b).priority - getPairStatus(a).priority;
   });
 
-  // Calculate strict bounds for transparency
   const now = new Date();
   const maxDateTimeStr = formatLocalDateTime(now);
   const oldestDate = new Date(now.getTime() - (35 * 60 + 30) * 60 * 1000);
   const minDateTimeStr = formatLocalDateTime(oldestDate);
 
-  // Quick preset shortcuts helper
   const handleQuickPreset = (hoursAgo: number) => {
     const target = new Date(Date.now() - hoursAgo * 60 * 60 * 1000);
     setInputDateTime(formatLocalDateTime(target));
@@ -240,43 +238,17 @@ export default function PairsDashboard() {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-gray-950 text-white flex flex-col p-3 md:p-7 select-none overflow-x-hidden">
-      {/* Top Header info bar */}
-      {/* <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-900/80 border border-gray-800 rounded-xl p-3 mb-4 shadow-lg gap-2">
-        <div>
-          <h1 className="text-base md:text-lg font-black tracking-wider text-cyan-400">
-            QUOTEX 35.5H PRO TRACKER
-          </h1>
-          <p className="text-[11px] text-gray-400">
-            Double-click or tap any card to configure candle entry time.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2 text-[10px] md:text-xs">
-          <span className="px-2 py-1 bg-red-600/30 border border-red-500 rounded text-red-300 font-medium">
-            Red (&lt;11h50m)
-          </span>
-          <span className="px-2 py-1 bg-orange-600/30 border border-orange-500 rounded text-orange-300 font-medium">
-            Orange (&lt;23h40m)
-          </span>
-          <span className="px-2 py-1 bg-yellow-500/20 border border-yellow-500 rounded text-yellow-300 font-medium">
-            Yellow (&lt;35h30m)
-          </span>
-          <span className="px-2 py-1 bg-green-600/30 border border-green-500 rounded text-green-300 font-medium">
-            Green (Ready)
-          </span>
-        </div>
-      </div> */}
-
-      {/* Responsive Grid Layout: Mobile friendly columns */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2.5 flex-grow w-full pb-4">
+    <div className="w-screen h-screen bg-gray-950 text-white flex flex-col p-3 md:p-7 select-none overflow-y-auto overflow-x-hidden">
+      {/* Responsive Grid Layout with iPhone-like bubble hover expansion */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 flex-grow w-full pb-4">
         {sortedPairs.map((pair, index) => {
           const status = getPairStatus(pair);
           return (
             <div
               key={index}
               onDoubleClick={() => handleDoubleClick(pair)}
-              onClick={() => handleDoubleClick(pair)} // Enables smooth tap on mobile screens
-              className={`relative flex flex-col justify-between items-center rounded-xl cursor-pointer border border-gray-700/60 shadow-xl transition-all duration-200 p-2.5 active:scale-95 ${status.className}`}
+              onClick={() => handleDoubleClick(pair)}
+              className={`relative flex flex-col justify-between items-center rounded-2xl cursor-pointer border border-gray-700/60 shadow-xl transition-all duration-1000 ease-out origin-center p-3 hover:scale-95 active:scale-95 ${status.className}`}
               title="Tap to set time"
             >
               {/* Reset button */}
@@ -298,7 +270,7 @@ export default function PairsDashboard() {
               </div>
 
               {/* Live Info Box */}
-              <div className="flex flex-col items-center text-[10px] md:text-xs w-full bg-black/35 backdrop-blur-sm rounded-lg p-1 mt-2 border border-white/10">
+              <div className="flex flex-col items-center text-[10px] md:text-xs w-full bg-black/35 backdrop-blur-sm rounded-lg p-1.5 mt-2 border border-white/10">
                 <span className="opacity-90 font-medium">
                   Start: {pair.targetTimeStr || "Not Set"}
                 </span>
@@ -311,7 +283,7 @@ export default function PairsDashboard() {
         })}
       </div>
 
-      {/* Production-Level Interactive Modal with Transparent Helpers */}
+      {/* Production-Level Interactive Modal */}
       {selectedPair && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex justify-center items-center z-50 p-4">
           <div className="bg-gray-900 border border-gray-700 p-5 md:p-6 rounded-2xl shadow-2xl w-full max-w-md text-white animate-in fade-in zoom-in duration-150">
@@ -320,9 +292,6 @@ export default function PairsDashboard() {
                 <h2 className="text-xl md:text-2xl font-extrabold text-cyan-300">
                   {selectedPair.name}
                 </h2>
-                <p className="text-xs text-gray-400">
-                  Configure Big Candle Timestamp
-                </p>
               </div>
               <button
                 onClick={() => setSelectedPair(null)}
@@ -332,22 +301,9 @@ export default function PairsDashboard() {
               </button>
             </div>
 
-            {/* Transparency Panel: Shows exact allowable limits */}
-            <div className="bg-cyan-950/40 border border-cyan-800/50 rounded-xl p-3 mb-4 text-xs text-cyan-200 space-y-1">
-              <div className="font-semibold text-cyan-300">
-                ℹ️ Rule & Transparency Guide:
-              </div>
-              <div>
-                • Max allowed history: Exactly{" "}
-                <strong className="text-white">35h 30m ago</strong>.
-              </div>
-              <div>• Future times are strictly blocked for accuracy.</div>
-            </div>
-
-            {/* Quick Preset Buttons for Super Fast Input */}
             <div className="mb-3">
               <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-                Quick Shortcuts (Hours Ago):
+                QickSho
               </label>
               <div className="grid grid-cols-4 gap-1.5">
                 <button
@@ -355,33 +311,32 @@ export default function PairsDashboard() {
                   onClick={() => handleQuickPreset(1)}
                   className="bg-gray-800 hover:bg-gray-700 text-xs py-1.5 rounded-lg border border-gray-700 text-cyan-300 font-medium"
                 >
-                  1h Ago
+                  1h
                 </button>
                 <button
                   type="button"
                   onClick={() => handleQuickPreset(6)}
                   className="bg-gray-800 hover:bg-gray-700 text-xs py-1.5 rounded-lg border border-gray-700 text-cyan-300 font-medium"
                 >
-                  6h Ago
+                  6h
                 </button>
                 <button
                   type="button"
                   onClick={() => handleQuickPreset(12)}
                   className="bg-gray-800 hover:bg-gray-700 text-xs py-1.5 rounded-lg border border-gray-700 text-cyan-300 font-medium"
                 >
-                  12h Ago
+                  12h
                 </button>
                 <button
                   type="button"
                   onClick={() => handleQuickPreset(24)}
                   className="bg-gray-800 hover:bg-gray-700 text-xs py-1.5 rounded-lg border border-gray-700 text-cyan-300 font-medium"
                 >
-                  24h Ago
+                  24h
                 </button>
               </div>
             </div>
 
-            {/* Main Native Time Selector Input with Bounds */}
             <div className="mb-4">
               <label className="block text-xs font-semibold text-gray-300 mb-1">
                 Exact Date & Time Selector
@@ -399,14 +354,12 @@ export default function PairsDashboard() {
               />
             </div>
 
-            {/* Error Message banner */}
             {errorMsg && (
               <div className="bg-red-950/80 border border-red-700 text-red-200 text-xs p-2.5 rounded-xl mb-4 font-medium flex items-center gap-2">
                 {errorMsg}
               </div>
             )}
 
-            {/* Footer Action Buttons */}
             <div className="flex justify-end gap-2.5 mt-6">
               <button
                 onClick={() => setSelectedPair(null)}
