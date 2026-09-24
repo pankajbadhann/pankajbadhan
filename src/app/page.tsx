@@ -3,16 +3,23 @@
 import { useState, useEffect } from "react";
 import Hero from "@/sections/hero";
 import Pair from "@/sections/pair";
+import Pro from "@/sections/pro";
 
 export default function Home() {
-  const [showPair, setShowPair] = useState(false);
+  const [activeSection, setActiveSection] = useState<"hero" | "pair" | "pro">("hero");
 
-  // Keyboard shortcut listener (Ctrl + Shift + K)
+  // Keyboard shortcuts listener for Desktop
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl + Shift + K -> Pair Section
       if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setShowPair((prev) => !prev); // Toggle karega Pair section nu
+        setActiveSection((prev) => (prev === "pair" ? "hero" : "pair"));
+      }
+      // Ctrl + Shift + P -> Pro Section
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") {
+        e.preventDefault();
+        setActiveSection((prev) => (prev === "pro" ? "hero" : "pro"));
       }
     };
 
@@ -27,12 +34,35 @@ export default function Home() {
         <Hero />
       </div>
 
-      {/* Pair section sirf jad Ctrl + Shift + K dabaya javega tabhi overlay di tarah screen te aega */}
-      {showPair && (
+      {/* Pair section overlay */}
+      {activeSection === "pair" && (
         <div className="absolute inset-0 z-50 bg-[#09090B]">
           <Pair />
         </div>
       )}
+
+      {/* Pro section overlay */}
+      {activeSection === "pro" && (
+        <div className="absolute inset-0 z-50 bg-[#09090B]">
+          <Pro />
+        </div>
+      )}
+
+      {/* Mobile & Touch friendly Secret Toggle Bar (Screen de corners te chhothe jehe buttons jo bilkul subtle honge) */}
+      <div className="absolute bottom-4 right-4 z-50 flex gap-2 md:hidden">
+        <button
+          onClick={() => setActiveSection(prev => prev === "pair" ? "hero" : "pair")}
+          className="bg-zinc-800/80 text-zinc-400 text-xs px-3 py-1.5 rounded-full border border-zinc-700/50 backdrop-blur-sm active:scale-95 transition-transform"
+        >
+          {activeSection === "pair" ? "Close Pair" : "Pair"}
+        </button>
+        <button
+          onClick={() => setActiveSection(prev => prev === "pro" ? "hero" : "pro")}
+          className="bg-zinc-800/80 text-zinc-400 text-xs px-3 py-1.5 rounded-full border border-zinc-700/50 backdrop-blur-sm active:scale-95 transition-transform"
+        >
+          {activeSection === "pro" ? "Close Pro" : "Pro"}
+        </button>
+      </div>
     </main>
   );
 }

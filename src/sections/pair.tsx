@@ -240,9 +240,9 @@ export default function PairsDashboard() {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-gray-950 text-white flex flex-col p-3 md:p-5 select-none overflow-x-hidden">
+    <div className="w-screen min-h-screen bg-gray-950 text-white flex flex-col p-3 md:p-7 select-none overflow-x-hidden">
       {/* Top Header info bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-900/80 border border-gray-800 rounded-xl p-3 mb-4 shadow-lg gap-2">
+      {/* <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-900/80 border border-gray-800 rounded-xl p-3 mb-4 shadow-lg gap-2">
         <div>
           <h1 className="text-base md:text-lg font-black tracking-wider text-cyan-400">
             QUOTEX 35.5H PRO TRACKER
@@ -265,7 +265,7 @@ export default function PairsDashboard() {
             Green (Ready)
           </span>
         </div>
-      </div>
+      </div> */}
 
       {/* Responsive Grid Layout: Mobile friendly columns */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2.5 flex-grow w-full pb-4">
