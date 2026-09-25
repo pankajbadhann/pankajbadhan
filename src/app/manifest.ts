@@ -17,7 +17,7 @@ export default function manifest(): MetadataRoute.Manifest {
         type: 'image/png',
       },
       {
-        src: '/me.png', // Or use a dedicated 512x512 icon from your public folder
+        src: '/mee.png', // Or use a dedicated 512x512 icon from your public folder
         sizes: '512x512',
         type: 'image/png',
       },
