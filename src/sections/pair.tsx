@@ -12,58 +12,60 @@ interface PairData {
 export default function PairsDashboard() {
   const initialPairs: PairData[] = [
     // USD (11)
+    { name: "USDARS", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDBDT", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDCAD", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDCHF", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDCOP", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDDZD", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDEGP", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDIDR", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDINR", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDJPY", category: "USD", setTimestamp: null, targetTimeStr: "" },
+    { name: "USDMXN", category: "USD", setTimestamp: null, targetTimeStr: "" },
     { name: "USDZAR", category: "USD", setTimestamp: null, targetTimeStr: "" },
     { name: "USDPKR", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDMXN", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDJPY", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDINR", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDEGP", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDDZD", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDCOP", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDCHF", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDCAD", category: "USD", setTimestamp: null, targetTimeStr: "" },
-    { name: "USDARS", category: "USD", setTimestamp: null, targetTimeStr: "" },
-
-    // NZD (4)
-    { name: "NZDUSD", category: "NZD", setTimestamp: null, targetTimeStr: "" },
-    { name: "NZDJPY", category: "NZD", setTimestamp: null, targetTimeStr: "" },
-    { name: "NZDCHF", category: "NZD", setTimestamp: null, targetTimeStr: "" },
-    { name: "NZDCAD", category: "NZD", setTimestamp: null, targetTimeStr: "" },
-
-    // GBP (6)
-    { name: "GBPUSD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-    { name: "GBPNZD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-    { name: "GBPJPY", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-    { name: "GBPCHF", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-    { name: "GBPCAD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-    { name: "GBPAUD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
-
-    // EUR (7)
-    { name: "EURUSD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURNZD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURJPY", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURGBP", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURCHF", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURCAD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "EURAUD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-
-    // CHF (1)
-    { name: "CHFJPY", category: "CHF", setTimestamp: null, targetTimeStr: "" },
-    // CAD (2)
-    { name: "CADJPY", category: "CAD", setTimestamp: null, targetTimeStr: "" },
-    { name: "CADCHF", category: "CAD", setTimestamp: null, targetTimeStr: "" },
-    // BTC (1)
-    { name: "BTCUSD", category: "BTC", setTimestamp: null, targetTimeStr: "" },
+    
+    
+    
+    
+    // AUD (5)
+    { name: "AUDCAD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "AUDCHF", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "AUDJPY", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "AUDNZD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "AUDUSD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
     // BRL (1)
     { name: "BRLUSD", category: "BRL", setTimestamp: null, targetTimeStr: "" },
-    // AUD (5)
-    { name: "AUDUSD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "AUDNZD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "AUDJPY", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "AUDCHF", category: "AUD", setTimestamp: null, targetTimeStr: "" },
-    { name: "AUDCAD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    // BTC (1)
+    { name: "BTCUSD", category: "BTC", setTimestamp: null, targetTimeStr: "" },
+    // CAD (2)
+    { name: "CADCHF", category: "CAD", setTimestamp: null, targetTimeStr: "" },
+    { name: "CADJPY", category: "CAD", setTimestamp: null, targetTimeStr: "" },
+    // CHF (1)
+    { name: "CHFJPY", category: "CHF", setTimestamp: null, targetTimeStr: "" },
+    // EUR (7)
+    { name: "EURAUD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURCAD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURCHF", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURGBP", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURJPY", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURNZD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    { name: "EURUSD", category: "AUD", setTimestamp: null, targetTimeStr: "" },
+    // GBP (6)
+    { name: "GBPAUD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    { name: "GBPCAD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    { name: "GBPCHF", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    { name: "GBPJPY", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    { name: "GBPNZD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    { name: "GBPUSD", category: "GBP", setTimestamp: null, targetTimeStr: "" },
+    // NZD (4)
+    { name: "NZDCAD", category: "NZD", setTimestamp: null, targetTimeStr: "" },
+    { name: "NZDCHF", category: "NZD", setTimestamp: null, targetTimeStr: "" },
+    { name: "NZDJPY", category: "NZD", setTimestamp: null, targetTimeStr: "" },
+    { name: "NZDUSD", category: "NZD", setTimestamp: null, targetTimeStr: "" },
   ];
-
+  
   const [pairs, setPairs] = useState<PairData[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("quotex_pairs_data_v4");
