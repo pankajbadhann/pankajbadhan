@@ -43,9 +43,9 @@ export default function Hero() {
         }}
         className="absolute inset-0 overflow-hidden"
       />
-      <div className="absolute -right-[3%] top-[5%] h-[100%] w-[68%]">
+      <div className="absolute -right-[3%] top-[5%] h-[100%] w-[50%]">
         <Image
-          src="/me.jpg"
+          src="/me.png"
           alt="Pankaj Badhan"
           fill
           priority
